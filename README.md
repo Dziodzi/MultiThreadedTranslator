@@ -25,9 +25,16 @@
      * JDBC URL: jdbc:h2:mem:yandex_translation_db
      * User Name: user
      * Password: 1234
-6. В консоли h2 выполните запрос
-```SELECT t.id AS id, t.ip_address, r.id as request_id, t.input_lang, t.input_text, t.output_lang, r.output_text, t.date_time,  FROM TRANSLATED_TEXT as r JOIN TRANSLATION_REQUEST as t ON r.request_id = t.id```. Этот запрос объединяет данные из таблиц ```TRANSLATED_TEXT``` и ```TRANSLATION_REQUEST```. 
-   * Обратите внимание, что каждому кортежу из таблицы ```TRANSLATION_REQUEST``` может соответствовать
-   один или несколько кортежей из таблицы ```TRANSLATED_TEXT```, так как некоторые слова после перевода состоят из большего количества букв,
-   чем до него. Это разделение необходимо из-за ограничения на размер поля ```output_text``` типа ```VARCHAR```, в котором хранится переведённый текст — 255 символов.
+6. В консоли h2 выполните запрос:
+>```SELECT t.id AS id, t.ip_address, r.id as request_id, t.input_lang, t.input_text, t.output_lang, r.output_text, t.date_time,  FROM TRANSLATED_TEXT as r JOIN TRANSLATION_REQUEST as t ON r.request_id = t.id```
+
+Этот запрос объединяет данные из таблиц ```TRANSLATED_TEXT``` и ```TRANSLATION_REQUEST```. 
+
+---
+> **N.b.** Обратите внимание, что каждому кортежу из таблицы ```TRANSLATION_REQUEST``` может соответствовать
+один или несколько кортежей из таблицы ```TRANSLATED_TEXT```, так как некоторые слова после перевода состоят из большего количества букв,
+чем до него. Это разделение необходимо из-за ограничения на размер поля ```output_text``` типа ```VARCHAR```, в котором хранится переведённый текст — 255 символов.
+
+![ER-диаграмма](pics/img.png)
+*Рис. 1 - ER-диаграмма*
 ---
