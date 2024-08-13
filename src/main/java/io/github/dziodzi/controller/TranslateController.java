@@ -1,5 +1,7 @@
 package io.github.dziodzi.controller;
 
+import io.github.dziodzi.controller.entityDTO.TranslatedTextDTO;
+import io.github.dziodzi.controller.entityDTO.TranslationRequestDTO;
 import io.github.dziodzi.service.TranslateService;
 import io.github.dziodzi.service.exceptions.TranslationException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -43,8 +45,8 @@ public class TranslateController {
 
         try {
             long startTime = System.currentTimeMillis();
-
-            String outputText = translateService.translateAndSave(request.getRemoteAddr(), sourceLang, text, targetLang);
+            TranslationRequestDTO requestDTO = new TranslationRequestDTO(request.getRemoteAddr(), sourceLang, text, targetLang);
+            String outputText = translateService.translateAndSave(requestDTO);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             log.info("Translation finished successfully in {} ms!", elapsedTime);

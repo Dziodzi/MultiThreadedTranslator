@@ -1,6 +1,7 @@
 package io.github.dziodzi.service;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import io.github.dziodzi.controller.entityDTO.TranslationRequestDTO;
 import io.github.dziodzi.dao.entity.TranslatedText;
 import io.github.dziodzi.dao.repository.TranslatedTextRepository;
 import io.github.dziodzi.dao.entity.TranslationRequest;
@@ -50,7 +51,13 @@ public class TranslateService {
         this.translationRepository = translationRepository;
     }
 
-    public String translateAndSave(String ipAddress, String sourceLang, String text, String targetLang) throws ApiRequestException {
+    public String translateAndSave(TranslationRequestDTO requestDTO) throws ApiRequestException {
+
+        String ipAddress = requestDTO.ipAddress();
+        String sourceLang = requestDTO.inputLang();
+        String text = requestDTO.inputText();
+        String targetLang = requestDTO.outputLang();
+
         if (sourceLang == null || targetLang == null || text == null) {
             throw new ApiRequestException("Invalid input parameters.");
         }
