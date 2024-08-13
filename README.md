@@ -15,17 +15,19 @@
 
 ---
 ## Инструкция по запуску
-1. Скачайте и откройте этот проект в IDE
-2. В корневой директории создайте файл ```.env``` с полем ```API_KEY=<ваш_api_key>```
+1. Установите JDK 17 версии, а затем скачайте и откройте этот проект в IDE
+2. Выполните команду ```mvn -N io.takari:maven:wrapper```
+3. В корневой директории создайте файл ```.env``` с полем ```API_KEY=<ваш_api_key>```
    * О том, как получить API-Key, можете прочитать здесь: https://yandex.cloud/ru/docs/translate/
-3. Последовательно выполните команды ```mvn clean package``` и ```mvn spring-boot:run```
-4. Вы можете отправить запрос на перевод по адресу http://localhost:8080/swagger-ui.html
-5. По адресу http://localhost:8080/h2-console/ доступна реляционная база данных с информацией о запросах на перевод и результатами работы соответствующего эндпоинта
+4. Последовательно выполните команды ```./mvnw clean package``` и ```./mvnw spring-boot:run```
+   * Для запуска на Windows выполните ```mvnw.cmd clean package``` и ```mvnw.cmd spring-boot:run``` соответственно
+5. Вы можете отправить запрос на перевод по адресу http://localhost:8080/swagger-ui.html
+6. По адресу http://localhost:8080/h2-console/ доступна реляционная база данных с информацией о запросах на перевод и результатами работы соответствующего эндпоинта
    * Данные для аутентификации:
      * JDBC URL: jdbc:h2:mem:yandex_translation_db
      * User Name: user
-     * Password: 1234
-6. В консоли h2 выполните запрос:
+     * Password: 1234 
+7. В консоли h2 выполните запрос:
 >```SELECT t.id AS id, t.ip_address, r.id as request_id, t.input_lang, t.input_text, t.output_lang, r.output_text, t.date_time,  FROM TRANSLATED_TEXT as r JOIN TRANSLATION_REQUEST as t ON r.request_id = t.id```
 
 Этот запрос объединяет данные из таблиц ```TRANSLATED_TEXT``` и ```TRANSLATION_REQUEST```. 

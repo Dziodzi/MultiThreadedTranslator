@@ -1,4 +1,4 @@
-package ru.itmo.exceptions;
+package io.github.dziodzi.service.exceptions;
 
 public class ApiRequestException extends Exception {
 

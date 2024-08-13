@@ -1,4 +1,4 @@
-package ru.itmo;
+package io.github.dziodzi.controller.tools;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springdoc.core.GroupedOpenApi;
