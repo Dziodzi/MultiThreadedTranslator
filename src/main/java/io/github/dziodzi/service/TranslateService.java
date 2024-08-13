@@ -71,7 +71,6 @@ public class TranslateService {
 
         String outputText = translate(sourceLang, targetLang, text);
 
-        log.warn(outputText);
         scheduledExecutorService.schedule(() -> {
             if (outputText.length() > 100) {
                 int start = 0;
